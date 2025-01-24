@@ -16,7 +16,7 @@ generateBtn.addEventListener("click", function(){
 
 // Step 3: Function to generate random passwords
 function generatePasswords() {
-    const passwordLength = 12 
+    const passwordLength = 15 
     let password1 = ""
     let password2 = ""
     
