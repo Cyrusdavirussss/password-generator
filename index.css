@@ -83,7 +83,7 @@ body{
 .checkbox-container {
     display: flex;
     align-items: center;
-    margin-top: 20px; /* Add space below the button */
+    margin-top: 15px; /* Add space below the button */
 }
 
 .checkbox-label{
