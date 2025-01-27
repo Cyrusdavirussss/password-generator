@@ -3,9 +3,13 @@
 const generateBtn = document.querySelector(".btn")
 const password1El = document.getElementById("password1")
 const password2El = document.getElementById("password2")
+const includeSymbolsCheckbox = document.getElementById("include-symbols")
+const includeNumbersCheckbox = document.getElementById("include-numbers")
 
-const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-"/"];
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("")
+const numbers = "0123456789".split("")
+const symbols = "!@#$%^&*()-_=+[]{}<>?".split("")
 
 
 // Step 2: Add event listener to the button
@@ -16,7 +20,9 @@ generateBtn.addEventListener("click", function(){
 
 // Step 3: Function to generate random passwords
 function generatePasswords() {
-    const passwordLength = 15 
+     const characters = updateCharacters()
+
+    let passwordLength = 15 
     let password1 = ""
     let password2 = ""
     
@@ -27,12 +33,30 @@ function generatePasswords() {
 
     }
     
-        // Display the generated passwords in the input fields
-        password1El.value = password1
-        password2El.value = password2
+    // Display the generated passwords in the input fields
+    password1El.value = password1
+    password2El.value = password2
         
-        password1El.style.color = "#5DEF92"
-        password2El.style.color ="#5DEF92"
+    includeSymbolsCheckbox.checked = false;
+    includeNumbersCheckbox.checked = false;
+        
+    password1El.style.color = "#5DEF92"
+    password2El.style.color ="#5DEF92"
+}
+
+
+function updateCharacters() {
+    let characters = [...letters]
+    
+    if (includeSymbolsCheckbox.checked) {
+        characters = characters.concat(symbols)
+    } 
+    
+    if (includeNumbersCheckbox.checked) {
+        characters = characters.concat(numbers)
+    }
+    
+    return characters
 }
 
 
@@ -72,3 +96,18 @@ function copyToClipBoard(inputfield) {
         inputfield.style.color = "#55F991" // Reset to original green color
     }, 3000) // 3-second delay
 }
+
+
+// The toggle ON/OFF symbols/numbers.
+// So we created 2 variables includeSymbolsCheckbox and includeNumbersCheckbox we grab the elements from the html via method getElementByID. 
+
+// We created 3 string variables, letters numbers symbols, each variable has strings according to letters numbers and symbols. 
+// We used a method .split("") to split each string on its own? Am guessing? Correct me if am wrong on this please.
+
+// Next is we created a function  updateCharacters() inside of this function we created a array variable characters = [...letters] this will always include letters by default 
+
+// And we used if statement add symbols if checked  and add numbers if checked ( includeSymbolsCheckbox.checked & includeNumbersCheckbox.checked 
+
+// Then we return the updated characters array. 
+
+// And now in the generatePassword() function we call the updateCharacters() function with the updated characters array. 
