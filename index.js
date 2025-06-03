@@ -39,8 +39,6 @@ function generatePasswords() {
     password1El.value = password1
     password2El.value = password2
         
-    includeSymbolsCheckbox.checked = false;
-    includeNumbersCheckbox.checked = false;
         
     password1El.style.color = "#5DEF92"
     password2El.style.color ="#5DEF92"
